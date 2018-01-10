@@ -10,6 +10,7 @@ import {UserModel} from "../models/user.model";
 
 export class NavBarComponent {
   public user: UserModel;
+  isNavbarCollapsed: boolean = false;
 
   constructor(public authService: LoginService) {
     this.authService.currentUser$
