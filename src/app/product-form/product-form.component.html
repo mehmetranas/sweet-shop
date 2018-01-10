@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-8">
+    <form [formGroup]="form">
+       <div class="form-group"> <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" [(ngModel)]="product.title" formControlName="title">
+       </div>
+      <div class="form-group"> <label for="price">Price</label>
+        <div class="input-group">
+          <span class="input-group-addon">$</span>
+        <input type="number" class="form-control" id="price" [(ngModel)]="product.price" formControlName="price">
+        </div>
+      </div>
+      <div class="form-group">
+        <select class="form-control" [(ngModel)]="product.category" formControlName="category">
+          <option>Select a Category</option>
+          <option *ngFor="let cat of (categories$ | async)" [value]="cat.key">{{cat.payload.val().name}}</option>
+        </select>
+      </div>
+      <div class="form-group"> <label for="imageUrl">Image URL</label>
+        <input type="text" class="form-control" id="imageUrl" [(ngModel)]="product.imageUrl" formControlName="imageUrl">
+      </div>
+    </form>
+    <button class="btn btn-success" [disabled]="!form.valid" (click)="save()">{{productId?'Save':'Create'}}</button>
+    <button class="btn btn-danger" *ngIf="productId" (click)="delete()">Delete</button>
+    <a class="btn btn-link" routerLink="/admin/products" *ngIf="productId" (click)="delete()">Cancel</a>
+    <hr>
+  </div>
+  <div class="col-md-4">
+    <app-product-card [product]="product"></app-product-card>
+  </div>
+</div>
+
+
