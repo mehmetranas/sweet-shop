@@ -17,6 +17,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   constructor(private productService: ProductService, private route: ActivatedRoute) {
    let subscribePr = productService.getProducts()
+      .valueChanges()
       .subscribe((products) => {
         this.products = products;
         this.filter()});

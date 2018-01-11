@@ -29,6 +29,7 @@ import {ProductService} from "./product.service";
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import { MenuComponent } from './menu/menu.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import {ShoppingCartService} from "./shopping-cart.service";
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { ProductCardComponent } from './product-card/product-card.component';
     AdminAuthGuard,
     UserService,
     CategoryService,
-    ProductService
+    ProductService,
+    ShoppingCartService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

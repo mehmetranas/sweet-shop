@@ -14,22 +14,20 @@ export class ProductService {
   }
 
   public getProducts(){
-    return this.db.list<ProductModel>('/products').valueChanges();
+    return this.db.list<ProductModel>('/products');
   }
 
-  getProduct(id: string) {
+  public getProduct(id: string) {
     return this.db.object<ProductModel | null>('/products/' + id);
   }
 
-  updateProduct(product,productKey){
+
+  public updateProduct(product,productKey){
     return this.db.object('products/' + productKey).update(product);
   }
 
-  delete(key: string) {
+  public delete(key: string) {
     return this.db.object('/products/' + key).remove();
   }
 
-  public getProductsWithKeys() {
-    return this.db.list<ProductModel>('/products').snapshotChanges();
-  }
 }

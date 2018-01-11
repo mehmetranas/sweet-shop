@@ -23,7 +23,8 @@ export class AProductsComponent implements OnInit, OnDestroy {
     { name: 'Key' }
   ];
   constructor(public productService: ProductService) {
-    this.subscribe = productService.getProductsWithKeys()
+    this.subscribe = productService.getProducts()
+      .snapshotChanges()
       .map((products) => {
         let transformProducts: ProductModel[] = [];
         for(let product of products){
