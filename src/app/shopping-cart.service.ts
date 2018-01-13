@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase} from "angularfire2/database";
 import {CartModel} from "./models/cart.model";
+import {ItemModel} from "./models/item.model";
+import {ProductModel} from "./models/product.model";
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ShoppingCartService {
@@ -9,7 +12,9 @@ export class ShoppingCartService {
 
   public async getCart(){
     const cartId = await this.createOrGetCardId();
-    return this.db.object<CartModel>('/shopping-carts/' + cartId).valueChanges();
+    return this.db.object<CartModel>('/shopping-carts/' + cartId)
+      .valueChanges()
+      .map((result) => new CartModel(result.key,result.date,result.items))
   }
 
   private getItem(cartId, productId){
@@ -32,13 +37,13 @@ export class ShoppingCartService {
     return cartId;
   }
 
-  public async addToCart(product){
+  public async setQuantity(product: ProductModel, change: number) {
     const cartId = await this.createOrGetCardId();
     const item = this.getItem(cartId, product.key);
     item.snapshotChanges()
       .take(1)
       .subscribe(value =>
-        item.update({product: product, quantity: (value.payload.exists()? value.payload.val().quantity: 0) + 1})
+        item.update({product: product, quantity: (value.payload.exists()? value.payload.val().quantity: 0) + change})
       );
   }
 }

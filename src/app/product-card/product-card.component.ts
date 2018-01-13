@@ -19,13 +19,17 @@ export class ProductCardComponent implements OnInit {
   }
 
   public addToCart() {
-      this.shoppingCartService.addToCart(this.product)
+      this.shoppingCartService.setQuantity(this.product, 1)
         .then((resove) => console.log('Success'),
         (reject) => console.log('An error occurred', reject));
   }
 
   public getQuantity(){
     if(!this.shoppingCart || !this.shoppingCart.items) return 0;
-      return this.shoppingCart.items[this.product.key]? this.shoppingCart.items[this.product.key].quantity : null;
+      return this.shoppingCart.items[this.product.key]? this.shoppingCart.items[this.product.key].quantity : 0;
+  }
+
+  public setQuantity(value: number) {
+    this.shoppingCartService.setQuantity(this.product, value);
   }
 }
