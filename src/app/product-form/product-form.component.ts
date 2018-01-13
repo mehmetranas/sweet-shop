@@ -29,10 +29,11 @@ export class ProductFormComponent implements OnInit {
     this.categories$ = this.categoryService.getCategories();
     this.productId = this.route.snapshot.paramMap.get('id');
     if(this.productId){
-        this.productService.getProduct(this.productId).valueChanges()
-        .take(1)
-        .subscribe((product) => {
-          if(product) this.product = product;
+        this.productService.getProduct(this.productId)
+          .valueChanges()
+          .take(1)
+          .subscribe((product) => {
+            if(product) this.product = product;
         });
     }
   }
@@ -56,7 +57,8 @@ export class ProductFormComponent implements OnInit {
     this.productService.create(this.product)
       .then(resolve => {
         this.form.reset();
-        this.router.navigate(['/admin/products']);
+        this.router.navigate(
+          ['/admin/products']);
         console.log('all good');
       }, reject => {
         console.log('error');
