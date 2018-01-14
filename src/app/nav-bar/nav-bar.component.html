@@ -11,7 +11,7 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" routerLink="shopping-cart">Shopping Cart <span class="sr-only">(current)</span>
-          <span *ngIf="cart$ | async as cart" class="badge badge-pill badge-warning">{{cart.getTotalProductsOfItem()}}</span>
+          <span *ngIf="cart$ | async as cart" class="badge badge-pill badge-warning">{{cart.getTotalProductsOfItem}}</span>
         </a>
       </li>
           <ng-template #loginBlock>
