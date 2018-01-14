@@ -1,7 +1,10 @@
 import {ProductModel} from "./product.model";
 
 export class ItemModel{
-  key?:string;
-  product?: ProductModel;
-  quantity?: number = 0;
+
+  constructor(public key: string, public product: ProductModel, public quantity: number) {}
+
+  get totalPrice(){
+    return this.quantity * this.product.price;
+  }
 }

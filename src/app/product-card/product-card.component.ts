@@ -25,8 +25,8 @@ export class ProductCardComponent implements OnInit {
   }
 
   public getQuantity(){
-    if(!this.shoppingCart || !this.shoppingCart.items) return 0;
-      return this.shoppingCart.items[this.product.key]? this.shoppingCart.items[this.product.key].quantity : 0;
+    if(!this.shoppingCart || !this.shoppingCart.itemsMap) return 0;
+      return this.shoppingCart.itemsMap[this.product.key]? this.shoppingCart.itemsMap[this.product.key].quantity : 0;
   }
 
   public setQuantity(value: number) {

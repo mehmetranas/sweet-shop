@@ -30,6 +30,7 @@ import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import { MenuComponent } from './menu/menu.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import {ShoppingCartService} from "./shopping-cart.service";
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {ShoppingCartService} from "./shopping-cart.service";
     ProductFormComponent,
     MenuComponent,
     ProductCardComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ProductQuantityComponent
   ],
   imports: [
     BrowserModule,

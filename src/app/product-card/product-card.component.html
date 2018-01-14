@@ -9,16 +9,6 @@
       Add shopping cart</button>
   </div>
   <ng-template #updateQuantity>
-    <div class="row">
-      <div class="col-md-4">
-        <button class="btn btn-secondary btn-block" (click)="setQuantity(-1)">-</button>
-      </div>
-      <div class="col-md-4 text-center">
-        <span>{{getQuantity()}} in cart</span>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-secondary btn-block" (click)="setQuantity(1)">+</button>
-      </div>
-    </div>
+    <app-product-quantity [product]="product" [shopping-cart]="shoppingCart"></app-product-quantity>
   </ng-template>
 </div>
