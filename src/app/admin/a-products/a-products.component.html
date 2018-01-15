@@ -12,18 +12,29 @@
           [rows]="filterProducts"
           [loadingIndicator]="loadingIndicator"
           [columns]="columns"
-          [columnMode]="'standard'"
+          [columnMode]="'fixed'"
           [headerHeight]="40"
           [footerHeight]="40"
+          [scrollbarH]="true"
           [limit]="10"
           [rowHeight]="50"
           [reorderable]="reorderable">
-          <ngx-datatable-column name="Index" width="30">
+
+        <!--<ngx-datatable-->
+          <!--class="material expandable"-->
+          <!--[columnMode]="'fixed'"-->
+          <!--[headerHeight]="50"-->
+          <!--[footerHeight]="50"-->
+          <!--[rowHeight]="50"-->
+          <!--[scrollbarV]="false"-->
+          <!--[scrollbarH]="true"-->
+          <!--[rows]="filterProducts">-->
+          <ngx-datatable-column name="#" [width]="30">
             <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
               <strong>{{rowIndex + 1}}</strong>
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Title" width="300">
+          <ngx-datatable-column name="Title" [width]="200">
             <ng-template let-column="column"  ngx-datatable-header-template>
               <strong>{{column.name}}</strong>
             </ng-template>
@@ -31,7 +42,7 @@
              {{value}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Price" width="150">
+          <ngx-datatable-column name="Price" [width]="100">
             <ng-template let-column="column" ngx-datatable-header-template>
               <strong>{{column.name}}</strong>
             </ng-template>
@@ -39,7 +50,7 @@
               {{value | currency:'USD'}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Key" width="250">
+          <ngx-datatable-column name="Key" [width]="150">
             <ng-template let-column="column" ngx-datatable-header-template>
               <strong>Edit</strong>
             </ng-template>
