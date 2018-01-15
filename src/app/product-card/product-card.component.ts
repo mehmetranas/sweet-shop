@@ -16,7 +16,7 @@ export class ProductCardComponent {
   constructor(private shoppingCartService: ShoppingCartService) { }
 
   public addToCart() {
-      this.shoppingCartService.setQuantity(this.product, 1)
+       this.shoppingCartService.setQuantity(this.product, 1)
         .then((resove) => console.log('Success'),
         (reject) => console.log('An error occurred', reject));
   }

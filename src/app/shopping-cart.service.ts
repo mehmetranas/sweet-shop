@@ -1,12 +1,13 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from "@angular/core";
 import {AngularFireDatabase} from "angularfire2/database";
 import {CartModel} from "./models/cart.model";
 import {ProductModel} from "./models/product.model";
 import 'rxjs/add/operator/map';
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class ShoppingCartService {
-
+  public sendCart: EventEmitter<Observable<CartModel>> = new EventEmitter<Observable<CartModel>>();
   constructor(private db: AngularFireDatabase) { }
 
   public async getCart(){
@@ -18,6 +19,8 @@ export class ShoppingCartService {
 
   public async setQuantity(product: ProductModel, change: number) {
     const cartId = await this.createOrGetCardId();
+
+
     const item = this.getItem(cartId, product.key);
     item.snapshotChanges()
       .take(1)
@@ -54,4 +57,5 @@ export class ShoppingCartService {
     }
     return cartId;
   }
+
 }

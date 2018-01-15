@@ -16,7 +16,7 @@ export class NavBarComponent implements OnInit, OnDestroy{
   public user: UserModel;
   public isNavbarCollapsed: boolean = false;
   public cart$: Observable<CartModel>;
-  public subscribeCount: Subscription;
+  public subscribe: Subscription;
 
   constructor(public authService: LoginService, private shoppingCartService: ShoppingCartService) {
     this.authService.currentUser$
@@ -28,11 +28,15 @@ export class NavBarComponent implements OnInit, OnDestroy{
   }
 
   public async ngOnInit(){
+    if(localStorage.getItem('shoppingId'))
     this.cart$ = await this.shoppingCartService.getCart();
+    else{
+      this.subscribe = this.shoppingCartService.sendCart.subscribe(cart$ => this.cart$ = cart$);
+    }
   }
 
   public ngOnDestroy(){
-    this.subscribeCount.unsubscribe();
+    this.subscribe.unsubscribe();
   }
 
 }

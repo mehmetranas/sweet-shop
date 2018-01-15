@@ -21,7 +21,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
-              private cartService: ShoppingCartService){
+              private shoppingCartService: ShoppingCartService){
 
    let subscribePr = productService.getProducts()
       .snapshotChanges()
@@ -45,7 +45,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
-    const subscribeSC = (await this.cartService.getCart()).subscribe((cart) => this.shoppingCart = cart);
+    const cart$ = await this.shoppingCartService.getCart();
+    const subscribeSC = cart$.subscribe((cart) => {
+      this.shoppingCart = cart;
+      this.shoppingCartService.sendCart.emit(cart$)
+    });
     this.subscribes.push(subscribeSC);
   }
 

@@ -15,11 +15,11 @@ export class ShoppingCardComponent implements OnInit {
   constructor(private shoppingCartService: ShoppingCartService, private router: Router) { }
 
   public async ngOnInit() {
-   this.cart$ = await this.shoppingCartService.getCart();
+    if(!localStorage.getItem('shoppingId')) return;
+    this.cart$ = await this.shoppingCartService.getCart();
   }
 
   public clearAllItems() {
-    console.log('in method');
     this.shoppingCartService.clearAllItems()
       .then((resolve) => {
           console.log('Successfully removed');
