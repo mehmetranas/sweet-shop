@@ -11,7 +11,7 @@ import {Observable} from "rxjs/Observable";
 })
 export class ProductQuantityComponent {
 
-  @Input() product: ProductModel = new ProductModel();
+  @Input('product') product;
   @Input('shopping-cart') shoppingCart: CartModel;
 
   constructor(private shoppingCartService: ShoppingCartService) { }

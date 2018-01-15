@@ -2,6 +2,7 @@
 export class ItemModel{
 
   public key: string;
+  public title: string;
   public imageUrl: string;
   public category: string;
   public price: number;

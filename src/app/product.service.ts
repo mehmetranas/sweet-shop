@@ -18,7 +18,7 @@ export class ProductService {
   }
 
   public getProduct(id: string) {
-    return this.db.object<ProductModel | null>('/products/' + id);
+    return this.db.object<ProductModel | null>('/products/' + id).valueChanges();
   }
 
 

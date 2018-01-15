@@ -41,7 +41,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
       .subscribe((products) => {
         this.products = products;
         this.filter()});
-
     this.subscribes.push(subscribePr);
   }
 
