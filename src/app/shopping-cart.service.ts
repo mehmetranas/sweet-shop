@@ -13,7 +13,7 @@ export class ShoppingCartService {
     const cartId = await this.createOrGetCardId();
     return this.db.object<CartModel>('/shopping-carts/' + cartId)
       .valueChanges()
-      .map((result) => new CartModel(result.key,result.date,result.items))
+      .map((result) => new CartModel({...result}))
   }
 
   private getItem(cartId, productId){
@@ -42,7 +42,7 @@ export class ShoppingCartService {
     item.snapshotChanges()
       .take(1)
       .subscribe(value =>
-        item.update({product: product, quantity: (value.payload.exists()? value.payload.val().quantity: 0) + change})
+        item.update({...product, quantity: (value.payload.exists()? value.payload.val().quantity: 0) + change})
       );
   }
 }

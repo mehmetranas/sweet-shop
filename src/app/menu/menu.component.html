@@ -5,10 +5,10 @@
     </a>
     <a class="list-group-item list-group-item-action"
        *ngFor="let category of (categories$ | async)"
-       routerLink="/"
        [queryParams]="{category: category.key}"
-       [class.active]="activeCategory == category.key"
-       (click)="activeCategory = category.key">
+       routerLink="/"
+       (click)="activeCategory = category.key"
+       [class.active]="activeCategory === category.key">
       {{category.payload.val().name}}</a>
   </ul>
 </div>

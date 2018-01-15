@@ -1,19 +1,23 @@
 import {ItemModel} from "./item.model";
 
 export class CartModel{
-  public items: ItemModel[] = [];
+  public itemModels: ItemModel[] = [];
+  public key?: string;
+  public date?: string;
+  public items?: { [productId: string]: any};
 
-  constructor(public key?: string, public date?: string, public itemsMap?: { [productId: string]: any}){
-    for(let productId in itemsMap){
-      let item = itemsMap[productId];
-    this.items.push(new ItemModel(item.key,item.product,item.quantity));
+  constructor(init?: Partial<CartModel>){
+    Object.assign(this, init);
+    for(let productId in this.items){
+      let item = this.items[productId];
+    this.itemModels.push(new ItemModel({...item}));
     }
   }
 
   get getTotalProductsOfItem(){
     let countItemsProduct = 0;
-    for(let productId in this.items){
-      const item = this.items[productId];
+    for(let productId in this.itemModels){
+      const item = this.itemModels[productId];
       if(item.quantity){
         countItemsProduct += item.quantity;
       }
@@ -22,12 +26,13 @@ export class CartModel{
   }
 
   public quantity(productId){
-    return this.itemsMap[productId]? this.itemsMap[productId].quantity : 0;
+    if(!this.items || !this.items[productId]) return 0;
+    return this.items[productId].quantity;
   }
 
   get totalCartPrice(){
     let result = 0;
-    for(let item of this.items){
+    for(let item of this.itemModels){
       result += item.totalPrice;
     }
     return result;

@@ -17,7 +17,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   public filteredProducts = [];
   private subscribes: Subscription[] = [];
   private query: string;
-  private shoppingCart: CartModel;
+  public shoppingCart: CartModel;
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,

@@ -15,7 +15,6 @@ import {ProductFormComponent} from "./product-form/product-form.component";
 
 export const APP_ROUTES: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'shopping-cart', component: ShoppingCardComponent},
   {path: 'products', component: ProductsComponent},
