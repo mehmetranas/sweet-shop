@@ -27,4 +27,8 @@ export class ShoppingCardComponent implements OnInit {
           (reject) => console.log('An error occurred', reject)
       )
   }
+
+  public checkout() {
+
+  }
 }
