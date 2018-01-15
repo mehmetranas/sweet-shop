@@ -25,6 +25,6 @@ export class ShoppingCardComponent implements OnInit {
           console.log('Successfully removed');
         },
           (reject) => console.log('An error occurred', reject)
-      })
+      )
   }
 }
