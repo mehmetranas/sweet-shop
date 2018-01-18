@@ -3,11 +3,13 @@ import {OrderService} from "../../shared/services/order.service";
 import {UserService} from "../../shared/services/user.service";
 
 @Component({
-  selector: 'app-a-orders',
-  templateUrl: './a-orders.component.html',
-  styleUrls: ['./a-orders.component.css']
+  selector: 'app-my-orders',
+  templateUrl: './my-orders.component.html',
+  styleUrls: ['./my-orders.component.css']
 })
-export class AOrdersComponent implements OnInit {
+export class MyOrdersComponent implements OnInit {
+
+  public orders$;
 
   constructor(private authService: UserService,
               private orderService: OrderService) { }
@@ -15,8 +17,9 @@ export class AOrdersComponent implements OnInit {
   ngOnInit() {
   }
 
-  public getOrders(){
-    this.orderService.getOrders();
+  public getOrderByUser(){
+    const user = this.authService.user$();
+    this.orders$ = this.orderService.getOrderByUser(user.uid);
   }
 
 }

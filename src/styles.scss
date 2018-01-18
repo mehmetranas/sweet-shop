@@ -1,0 +1,31 @@
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+$primary-color:#a077de;
+
+body{
+  padding-top: 80px;
+}
+
+a:hover{
+  cursor: pointer;
+}
+
+#home-product-card{
+  margin: 15px 0 15px 0;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+/*Overrides*/
+.fa{
+  color: $primary-color
+}
+
+.btn-primary .btn-primary.disabled{
+  background-color: $primary-color;
+  border-color: $primary-color;
+}
